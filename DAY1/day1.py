@@ -22,7 +22,7 @@ data = {
 report = {
     "Missing Values" : {"Name" :0,"Age": 0, "City": 0, 'Salary': 0,"Email": 0,"Gender" :0},
     "Duplicate Values" : {"Name" : 0,"Age" : 0, "City": 0, 'Salary': 0,"Email": 0,"Gender" :0},
-    "Data Type" : {"Name" : 0,"Age":0, "City": 0, 'Salary': 0,"Email": 0,"Gender" :0}
+    "Data Type" : {"Name" : "","Age":"", "City": "", 'Salary': "","Email": "","Gender" :""}
 }
 
 df = pd.DataFrame(data)
@@ -30,27 +30,27 @@ report_df = pd.DataFrame(report)
 
 def report_of_df(df,report_df):
     """IT FINDS THE MISSING VALUES, DUPLICATE VALUES AND DATA TYPE FOR EACH COLUMN"""
-    report_df['Missing Values']['Name'] = df['Name'].isna().sum()
-    report_df['Missing Values']['Age'] = df['Age'].isna().sum()
-    report_df['Missing Values']['City'] = df['City'].isna().sum()
-    report_df['Missing Values']['Salary'] = df['Salary'].isna().sum()
-    report_df['Missing Values']['Email'] = df['Email'].isna().sum()
-    report_df['Missing Values']['Gender'] = df['Gender'].isna().sum()
+    report_df.loc['Name', 'Missing Values'] = df['Name'].isna().sum()
+    report_df.loc['Age', 'Missing Values'] = df['Age'].isna().sum()
+    report_df.loc['City', 'Missing Values'] = df['City'].isna().sum()
+    report_df.loc['Salary', 'Missing Values'] = df['Salary'].isna().sum()
+    report_df.loc['Email', 'Missing Values'] = df['Email'].isna().sum()
+    report_df.loc['Gender', 'Missing Values'] = df['Gender'].isna().sum()
 
-    report_df['Duplicate Values']['Name'] = df['Name'].duplicated().sum()
-    report_df['Duplicate Values']['Age'] = df['Age'].duplicated().sum()
-    report_df['Duplicate Values']['City'] = df['City'].duplicated().sum()
-    report_df['Duplicate Values']['Salary'] = df['Salary'].duplicated().sum()
-    report_df['Duplicate Values']['Email'] = df['Email'].duplicated().sum()
-    report_df['Duplicate Values']['Gender'] = df['Gender'].duplicated().sum()
+    report_df.loc['Name', 'Duplicate Values'] = df['Name'].duplicated().sum()
+    report_df.loc['Age', 'Duplicate Values'] = df['Age'].duplicated().sum()
+    report_df.loc['City', 'Duplicate Values'] = df['City'].duplicated().sum()
+    report_df.loc['Salary', 'Duplicate Values'] = df['Salary'].duplicated().sum()
+    report_df.loc['Email', 'Duplicate Values'] = df['Email'].duplicated().sum()
+    report_df.loc['Gender', 'Duplicate Values'] = df['Gender'].duplicated().sum()
 
+    report_df.loc['Name', 'Data Type'] = str(df['Name'].dtype)
+    report_df.loc['Age', 'Data Type'] = str(df['Age'].dtype)
+    report_df.loc['City', 'Data Type'] = str(df['City'].dtype)
+    report_df.loc['Salary', 'Data Type'] = str(df['Salary'].dtype)
+    report_df.loc['Email', 'Data Type'] = str(df['Email'].dtype)
+    report_df.loc['Gender', 'Data Type'] = str(df['Gender'].dtype)
 
-    report_df['Data Type']['Name'] = df['Name'].dtype
-    report_df['Data Type']['Age'] = df['Age'].dtype
-    report_df['Data Type']['City'] = df['City'].dtype
-    report_df['Data Type']['Salary'] = df['Salary'].dtype
-    report_df['Data Type']['Email'] = df['Email'].dtype
-    report_df['Data Type']['Gender'] = df['Gender'].dtype
     return report_df
 
 report_df = report_of_df(df,report_df)
